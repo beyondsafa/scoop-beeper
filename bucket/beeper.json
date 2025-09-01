@@ -1,0 +1,27 @@
+{
+    "version": "4.1.145",
+    "description": "Beeper is a universal chat app combining 15+ messengers into one.",
+    "homepage": "https://www.beeper.com/",
+    "license": "Proprietary",
+    "url": "https://beeper-desktop.download.beeper.com/builds/Beeper%20x64%204.1.145.exe",
+    "hash": "F2BF0C4EBD6D57F24ACB1D2C9D0C2A702AF461DE653B867149D8F11349BDC11C",
+    "installer": {
+        "script": [
+            "7z x \"$dir\\Beeper*145.exe\" -o\"$dir\\temp\" -y",
+            "$nested = Get-ChildItem \"$dir\\temp\" -Recurse -Filter 'app-64.7z' | Select-Object -First 1",
+            "if (-not $nested) { throw 'Nested app-64.7z not found!' }",
+            "7z x $nested.FullName -o\"$dir\" -y",
+            "Remove-Item -Recurse -Force \"$dir\\temp\" -ErrorAction SilentlyContinue"
+        ]
+    },
+    "bin": "Beeper.exe",
+    "shortcuts": [
+        [
+            "Beeper.exe",
+            "Beeper"
+        ]
+    ],
+    "depends": [
+        "7zip"
+    ]
+}
